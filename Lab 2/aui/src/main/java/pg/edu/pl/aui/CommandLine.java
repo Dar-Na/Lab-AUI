@@ -27,9 +27,16 @@ public class CommandLine implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String nextLine = "";
-        String startUpInfo = "" +
-                "To create new Student write: create student \n" +
-                "To create new Subject write: create subject";
+        String startUpInfo = """
+                stop\s
+                create subject\s
+                delete subject\s
+                find all subjects\s
+                find subject\s
+                create student\s
+                delete student\s
+                find all students\s
+                find student""";
         System.out.println(startUpInfo);
         while (!Objects.equals(nextLine, "stop")) {
             nextLine = scanner.nextLine();
