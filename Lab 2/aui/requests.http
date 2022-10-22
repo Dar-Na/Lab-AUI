@@ -1,0 +1,86 @@
+GET http://localhost:8080/api/subjects
+
+###
+
+GET http://localhost:8080/api/subjects/2
+
+###
+
+POST http://localhost:8080/api/subjects
+Content-Type: application/json
+
+{
+  "subjectName": "Sigrid",
+  "ectsNumber": 11
+}
+
+
+###
+
+PUT http://localhost:8080/api/subjects/1
+Content-Type: application/json
+
+{
+  "subjectName": "Sir Sigrid"
+}
+
+
+###
+
+DELETE http://localhost:8080/api/subjects/2
+
+###
+
+GET http://localhost:8080/api/students
+
+###
+
+GET http://localhost:8080/api/students/meg/subjects/
+
+###
+
+POST http://localhost:8080/api/students/Sigrid111/subjects/
+Content-Type: application/json
+
+{
+  "subjectName": "13asd",
+  "ectsNumber": 1111
+}
+
+###
+
+POST http://localhost:8080/api/students
+Content-Type: application/json
+
+{
+  "name": "Sigrid111",
+  "age": 13
+}
+
+###
+
+PUT http://localhost:8080/api/students/meg
+Content-Type: application/json
+
+{
+  "name": "Sir Sigrid",
+  "age": 13111
+}
+
+###
+
+DELETE http://localhost:8080/api/students/martin
+
+###
+
+DELETE http://localhost:8080/api/students/kevin/subjects/1
+
+###
+
+PUT  http://localhost:8080/api/students/Sigrid111/subjects/5
+Content-Type: application/json
+
+{
+  "subjectName": "ARARARARAR",
+  "ectsNumber": 1111
+}

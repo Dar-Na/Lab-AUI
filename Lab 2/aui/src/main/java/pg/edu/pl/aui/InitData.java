@@ -2,20 +2,21 @@ package pg.edu.pl.aui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pg.edu.pl.aui.entity.Student;
-import pg.edu.pl.aui.entity.Subject;
-import pg.edu.pl.aui.service.StudentService;
-import pg.edu.pl.aui.service.SubjectService;
+import pg.edu.pl.aui.student.entity.Student;
+import pg.edu.pl.aui.student.entity.Subject;
+import pg.edu.pl.aui.student.service.StudentService;
+import pg.edu.pl.aui.student.service.SubjectService;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class InitData {
     private StudentService studentService;
-    private SubjectService subjectService;
+    private final SubjectService subjectService;
 
     @Autowired
     public InitData(StudentService studentService, SubjectService subjectService) {
@@ -25,20 +26,52 @@ public class InitData {
 
     @PostConstruct
     private synchronized void init() {
-        Subject subject1 = new Subject("test name", 13);
-        Subject subject2 = new Subject("matma", 5000);
-        Subject subject3 = new Subject("poo", 3);
+        Student kevin = Student.builder()
+                .name("kevin")
+                .age(1l)
+                .build();
 
-        subjectService.create(subject1);
-        subjectService.create(subject2);
-        subjectService.create(subject3);
+        Student martin = Student.builder()
+                .name("martin")
+                .age(25l)
+                .build();
 
-        Student student1 = new Student("student1", 1, subjectService.findAll());
-        Student student2 = new Student("student2", 3, subjectService.findAll());
-        Student student3 = new Student("student3", 12, new ArrayList<Subject>(List.of(subjectService.getByName("poo"))));
 
-        studentService.create(student1);
-        studentService.create(student2);
-        studentService.create(student3);
+        Student meg = Student.builder()
+                .name("meg")
+                .age(15l)
+                .build();
+
+        studentService.create(kevin);
+        studentService.create(martin);
+        studentService.create(meg);
+
+        Subject matma = Subject.builder()
+                .subjectName("matma")
+                .ectsNumber(13L)
+                .student(martin)
+                .build();
+
+        Subject paa = Subject.builder()
+                .subjectName("paa")
+                .ectsNumber(54353L)
+                .student(meg)
+                .build();
+
+        Subject ako = Subject.builder()
+                .subjectName("ako")
+                .ectsNumber(1L)
+                .student(meg)
+                .build();
+
+        subjectService.create(matma);
+        subjectService.create(paa);
+        subjectService.create(ako);
+//        Optional<Student> m = studentService.find("meg");
+//        subjectService.create(Subject.builder().subjectName("mamamm").ectsNumber(1311l).student(m.get()).build());
+
+
+
+
     }
 }
